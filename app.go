@@ -3,13 +3,16 @@ package main
 import (
 	"fmt"
 	"net/http"
-
-	"google.golang.org/appengine"
 )
 
-func main() {
-	http.HandleFunc("/", helloHandler)
-	appengine.Main()
+func init() {
+	initializeConfig()
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", helloHandler)
+	mux.HandleFunc("/fetch", Fetch)
+	mux.HandleFunc("/api/player/list", PlayerList)
+	http.Handle("/", mux)
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
