@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -22,7 +21,6 @@ func PlayerList(w http.ResponseWriter, r *http.Request) {
 		log.Errorf(ctx, "fetching next Person: %v", err)
 		return
 	}
-	log.Errorf(ctx, fmt.Sprintf("Recieved Player %s", players[0].FirstName))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(players)
