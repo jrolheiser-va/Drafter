@@ -12,6 +12,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 5,
         'Assists': 8,
         'Points': 13,
+        'PointsPerGame': 0.21666666666666667,
         'PlusMinus': 8
     },
     {
@@ -25,6 +26,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 17,
         'Assists': 11,
         'Points': 28,
+        'PointsPerGame': 0.35443037974683544,
         'PlusMinus': -18
     },
     {
@@ -38,6 +40,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 12,
         'Assists': 9,
         'Points': 21,
+        'PointsPerGame': 0.3181818181818182,
         'PlusMinus': -11
     },
     {
@@ -51,6 +54,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 15,
         'Assists': 22,
         'Points': 37,
+        'PointsPerGame': 0.47435897435897434,
         'PlusMinus': -19
     },
     {
@@ -64,6 +68,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 5,
         'Assists': 2,
         'Points': 7,
+        'PointsPerGame': 0.15217391304347827,
         'PlusMinus': -4
     },
     {
@@ -77,6 +82,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 21,
         'Assists': 31,
         'Points': 52,
+        'PointsPerGame': 0.6666666666666666,
         'PlusMinus': 1
     },
     {
@@ -90,6 +96,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 3,
         'Assists': 10,
         'Points': 13,
+        'PointsPerGame': 0.3170731707317073,
         'PlusMinus': -2
     },
     {
@@ -103,6 +110,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 3,
         'Assists': 7,
         'Points': 10,
+        'PointsPerGame': 0.18867924528301888,
         'PlusMinus': 14
     },
     {
@@ -116,6 +124,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 0,
         'Assists': 1,
         'Points': 1,
+        'PointsPerGame': 0.03225806451612903,
         'PlusMinus': 0
     },
     {
@@ -129,6 +138,7 @@ export const MOCK_DATA: Player[] = [
         'Goals': 14,
         'Assists': 29,
         'Points': 43,
+        'PointsPerGame': 0.581081081081081,
         'PlusMinus': -3
     },
     {
@@ -138,10 +148,11 @@ export const MOCK_DATA: Player[] = [
         'Position': 'C',
         'TeamID': '11',
         'TeamAbbreviation': 'BOS',
-        'GamesPlayed': 76,
+        'GamesPlayed': 77,
         'Goals': 16,
         'Assists': 31,
         'Points': 47,
+        'PointsPerGame': 0.6103896103896104,
         'PlusMinus': 10
     },
     {
@@ -155,6 +166,161 @@ export const MOCK_DATA: Player[] = [
         'Goals': 0,
         'Assists': 4,
         'Points': 4,
+        'PointsPerGame': 0.4,
         'PlusMinus': -1
+    },
+    {
+        'ID': '10078',
+        'LastName': 'O Gara',
+        'FirstName': 'Rob',
+        'Position': 'D',
+        'TeamID': '9',
+        'TeamAbbreviation': 'NYR',
+        'GamesPlayed': 30,
+        'Goals': 0,
+        'Assists': 3,
+        'Points': 3,
+        'PointsPerGame': 0.1,
+        'PlusMinus': -7
+    },
+    {
+        'ID': '10079',
+        'LastName': 'Point',
+        'FirstName': 'Brayden',
+        'Position': 'C',
+        'TeamID': '1',
+        'TeamAbbreviation': 'TBL',
+        'GamesPlayed': 82,
+        'Goals': 32,
+        'Assists': 34,
+        'Points': 66,
+        'PointsPerGame': 0.8048780487804879,
+        'PlusMinus': 18
+    },
+    {
+        'ID': '10080',
+        'LastName': 'Auvitu',
+        'FirstName': 'Yohann',
+        'Position': 'D',
+        'TeamID': '24',
+        'TeamAbbreviation': 'EDM',
+        'GamesPlayed': 33,
+        'Goals': 3,
+        'Assists': 6,
+        'Points': 9,
+        'PointsPerGame': 0.2727272727272727,
+        'PlusMinus': 4
+    },
+    {
+        'ID': '10083',
+        'LastName': 'Jarry',
+        'FirstName': 'Tristan',
+        'Position': 'G',
+        'TeamID': '10',
+        'TeamAbbreviation': 'PIT',
+        'GamesPlayed': 26,
+        'Goals': 0,
+        'Assists': 2,
+        'Points': 2,
+        'PointsPerGame': 0.07692307692307693,
+        'PlusMinus': 0
+    },
+    {
+        'ID': '10084',
+        'LastName': 'Frk',
+        'FirstName': 'Martin',
+        'Position': 'RW',
+        'TeamID': '16',
+        'TeamAbbreviation': 'DET',
+        'GamesPlayed': 68,
+        'Goals': 11,
+        'Assists': 14,
+        'Points': 25,
+        'PointsPerGame': 0.36764705882352944,
+        'PlusMinus': -14
+    },
+    {
+        'ID': '10092',
+        'LastName': 'Baptiste',
+        'FirstName': 'Nicholas',
+        'Position': 'RW',
+        'TeamID': '15',
+        'TeamAbbreviation': 'BUF',
+        'GamesPlayed': 33,
+        'Goals': 4,
+        'Assists': 2,
+        'Points': 6,
+        'PointsPerGame': 0.18181818181818182,
+        'PlusMinus': -4
+    },
+    {
+        'ID': '10094',
+        'LastName': 'Sedlak',
+        'FirstName': 'Lukas',
+        'Position': 'C',
+        'TeamID': '19',
+        'TeamAbbreviation': 'CBJ',
+        'GamesPlayed': 53,
+        'Goals': 4,
+        'Assists': 4,
+        'Points': 8,
+        'PointsPerGame': 0.1509433962264151,
+        'PlusMinus': -3
+    },
+    {
+        'ID': '10096',
+        'LastName': 'Smith',
+        'FirstName': 'Gemel',
+        'Position': 'C',
+        'TeamID': '27',
+        'TeamAbbreviation': 'DAL',
+        'GamesPlayed': 46,
+        'Goals': 6,
+        'Assists': 5,
+        'Points': 11,
+        'PointsPerGame': 0.2391304347826087,
+        'PlusMinus': 5
+    },
+    {
+        'ID': '10097',
+        'LastName': 'Gaudreau',
+        'FirstName': 'Frederick',
+        'Position': 'C',
+        'TeamID': '18',
+        'TeamAbbreviation': 'NSH',
+        'GamesPlayed': 20,
+        'Goals': 0,
+        'Assists': 3,
+        'Points': 3,
+        'PointsPerGame': 0.15,
+        'PlusMinus': 0
+    },
+    {
+        'ID': '10108',
+        'LastName': 'Stecher',
+        'FirstName': 'Troy',
+        'Position': 'D',
+        'TeamID': '21',
+        'TeamAbbreviation': 'VAN',
+        'GamesPlayed': 68,
+        'Goals': 1,
+        'Assists': 10,
+        'Points': 11,
+        'PointsPerGame': 0.16176470588235295,
+        'PlusMinus': -7
+    },
+    {
+        'ID': '10160',
+        'LastName': 'Lappin',
+        'FirstName': 'Nick',
+        'Position': 'RW',
+        'TeamID': '7',
+        'TeamAbbreviation': 'NJD',
+        'GamesPlayed': 6,
+        'Goals': 1,
+        'Assists': 0,
+        'Points': 1,
+        'PointsPerGame': 0.16666666666666666,
+        'PlusMinus': 2
     }
 ];

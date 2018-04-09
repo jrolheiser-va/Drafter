@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
     'LastName',
     'Points',
     'GamesPlayed',
+    'PointsPerGame',
     'Goals',
     'Assists',
     'PlusMinus'

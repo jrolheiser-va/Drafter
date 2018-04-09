@@ -11,5 +11,6 @@ export interface Player {
     Goals: number;
     Assists: number;
     Points: number;
+    PointsPerGame: number;
     PlusMinus: number;
 }

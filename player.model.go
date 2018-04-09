@@ -17,11 +17,12 @@ type Player struct {
 	TeamID           string
 	TeamAbbreviation string
 
-	GamesPlayed int64
-	Goals       int64
-	Assists     int64
-	Points      int64
-	PlusMinus   int64
+	GamesPlayed   int64
+	Goals         int64
+	Assists       int64
+	Points        int64
+	PointsPerGame float64
+	PlusMinus     int64
 	// HatTricks          int64
 	// Shots              int64
 	// BlockedShots       int64
@@ -64,6 +65,7 @@ func toPlayer(msfPlayer MSFPlayer) Player {
 		Assists:          msfPlayer.PlayerStats.Stats.Assists.Value,
 		Points:           msfPlayer.PlayerStats.Stats.Points.Value,
 		PlusMinus:        msfPlayer.PlayerStats.Stats.PlusMinus.Value,
+		PointsPerGame:    float64(msfPlayer.PlayerStats.Stats.Points.Value) / float64(msfPlayer.PlayerStats.GamesPlayed.Value),
 		// HatTricks:          msfPlayer.PlayerStats.Stats.HatTricks.Value,
 		// Shots:              msfPlayer.PlayerStats.Stats.Shots.Value,
 		// BlockedShots:       msfPlayer.PlayerStats.Stats.BlockedShots.Value,

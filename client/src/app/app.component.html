@@ -29,22 +29,27 @@
     </ng-container>
 
     <ng-container matColumnDef="Points">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> P </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pts </mat-header-cell>
       <mat-cell *matCellDef="let player"> {{player.Points}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="GamesPlayed">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> GP </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Games </mat-header-cell>
       <mat-cell *matCellDef="let player"> {{player.GamesPlayed}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="PointsPerGame">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> PPG </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.PointsPerGame | number: '1.3-3'}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="Goals">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> G </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Goals </mat-header-cell>
       <mat-cell *matCellDef="let player"> {{player.Goals}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Assists">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> A </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Assists </mat-header-cell>
       <mat-cell *matCellDef="let player"> {{player.Assists}} </mat-cell>
     </ng-container>
 
