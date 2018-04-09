@@ -2,5 +2,9 @@ runtime: go
 api_version: go1
 
 handlers:
-- url: /*
+- url: /.*
   script: _go_app
+
+env_variables:
+  MSF_USERNAME: "USERNAME"
+  MSF_PASSWORD: "PASSWORD"
