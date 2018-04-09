@@ -1,7 +1,14 @@
 runtime: go
 api_version: go1
 
+skip_files:
+- client/
+
 handlers:
+- url: /(.*\.(gif|png|jpg|js|css))$
+  static_files: dist/\1
+  upload: dist/.*\.(gif|png|jpg|js|css)$
+
 - url: /.*
   script: _go_app
 
