@@ -1,20 +1,59 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io//">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="mat-elevation-z8">
+  <mat-toolbar color="primary">
+    <span>NHL Drafter</span>
+  </mat-toolbar>
+  <div style="min-height: 64px; padding: 8px 24px 0;">
+    <mat-form-field style="width: 100%;">
+      <input matInput (keyup)="search($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
 
+  <mat-table #table
+    [dataSource]="playersSource"
+    style="overflow: auto;"
+    matSort (matSortChange)="sortPlayers($event)"
+  >
+    <ng-container matColumnDef="TeamAbbreviation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Team </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.TeamAbbreviation}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="FirstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.FirstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="LastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.LastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Points">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> P </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.Points}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="GamesPlayed">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> GP </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.GamesPlayed}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Goals">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> G </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.Goals}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Assists">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> A </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.Assists}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PlusMinus">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> +/- </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.PlusMinus}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
