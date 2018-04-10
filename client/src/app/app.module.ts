@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 import {
   MatToolbarModule,
@@ -21,6 +23,7 @@ import { PlayerService } from './player';
   ],
   imports: [
     BrowserModule,
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,

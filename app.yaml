@@ -5,11 +5,13 @@ skip_files:
 - client/
 
 handlers:
-- url: /(.*\.(gif|png|jpg|js|css))$
+- url: /(.*\.(gif|png|jpg|js|css|json))$
+  secure: always
   static_files: dist/\1
-  upload: dist/.*\.(gif|png|jpg|js|css)$
+  upload: dist/.*\.(gif|png|jpg|js|css|json)$
 
 - url: /.*
+  secure: always
   script: _go_app
 
 env_variables:
