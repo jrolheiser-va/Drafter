@@ -10,11 +10,11 @@ import { PLAYOFF_TEAMS } from '../team/team';
 })
 
 export class PlayerListComponent {
-    @Input() teamAbbreviation: string; 
+    @Input() teamAbbreviation: string;
     @Input() players: Player[];
 
     displayedColumns = [
-        //'TeamAbbreviation',
+        'TeamAbbreviation',
         'FirstName',
         'LastName',
         'Points',
