@@ -4,40 +4,26 @@ import { Sort } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 
 import { Player, PlayerService } from './player';
+import { Observable } from 'rxjs/Observable';
+import { PLAYOFF_TEAM_IDS } from './team/team';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  displayedColumns = [
-    'TeamAbbreviation',
-    'FirstName',
-    'LastName',
-    'Points',
-    'GamesPlayed',
-    'PointsPerGame',
-    'Goals',
-    'Assists',
-    'PlusMinus'
-  ];
-  playersSource: DataSource<Player>;
+  players: Player[] = [];
+  playoffPlayers: Player[] = [];
 
-  constructor(private players: PlayerService) {}
-
-  ngOnInit(): void {
-    this.playersSource = {
-      connect: () => this.players.players$,
-      disconnect: () => null
-    };
-  }
-
-  search(searchTerm: string): void {
-    this.players.applySearch(searchTerm);
-  }
-
-  sortPlayers(sort: Sort): void {
-    this.players.applySort(sort);
+  constructor(private playersService: PlayerService) {
+    this.playersService.players$.subscribe(
+      players => {
+        this.players = players;
+        this.playoffPlayers = this.players.filter(
+          player => PLAYOFF_TEAM_IDS.indexOf(player.TeamAbbreviation) > -1
+        );
+      }
+    );
   }
 }

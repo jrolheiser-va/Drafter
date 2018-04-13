@@ -11,15 +11,19 @@ import {
   MatIconModule,
   MatTableModule,
   MatInputModule,
-  MatSortModule
+  MatSortModule,
+  MatPaginatorModule,
+  MatButtonToggleModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PlayerService } from './player';
+import { PlayerListComponent } from './player/player-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, PlayerListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,10 @@ import { PlayerService } from './player';
     MatIconModule,
     MatTableModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatGridListModule
   ],
   providers: [
     PlayerService

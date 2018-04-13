@@ -1,64 +1,22 @@
 <div class="mat-elevation-z8">
   <mat-toolbar color="primary">
     <span>NHL Drafter</span>
+    <span style="flex: 1 1 auto;"></span>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="playoffs" checked="true">
+        Playoff Players
+      </mat-button-toggle>
+      <mat-button-toggle value="all">
+        All Players
+      </mat-button-toggle>
+    </mat-button-toggle-group>
   </mat-toolbar>
-  <div style="min-height: 64px; padding: 8px 24px 0;">
-    <mat-form-field style="width: 100%;">
-      <input matInput (keyup)="search($event.target.value)" placeholder="Search">
-    </mat-form-field>
-  </div>
-
-  <mat-table #table
-    [dataSource]="playersSource"
-    style="overflow: auto;"
-    matSort (matSortChange)="sortPlayers($event)"
-  >
-    <ng-container matColumnDef="TeamAbbreviation">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Team </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.TeamAbbreviation}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="FirstName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> First </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.FirstName}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="LastName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Last </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.LastName}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Points">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Pts </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.Points}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="GamesPlayed">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Games </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.GamesPlayed}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="PointsPerGame">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> PPG </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.PointsPerGame | number: '1.3-3'}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Goals">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Goals </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.Goals}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Assists">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Assists </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.Assists}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="PlusMinus">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> +/- </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.PlusMinus}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  <ng-container *ngIf="players.length" [ngSwitch]="group.value">
+    <div *ngSwitchCase="'playoffs'">
+      <player-list [players]="playoffPlayers" [teamAbbreviation]="'Playoff Players'"></player-list>
+    </div>
+    <div *ngSwitchCase="'all'">
+      <player-list [players]="players" [teamAbbreviation]="'All Players'"></player-list>
+    </div>
+  </ng-container>
 </div>
