@@ -9,8 +9,10 @@ func init() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", indexHandler)
-	mux.HandleFunc("/fetch", Fetch)
+	mux.HandleFunc("/fetch/regular", FetchRegular)
+	mux.HandleFunc("/fetch/playoff", FetchPlayoff)
 	mux.HandleFunc("/api/player/list", PlayerList)
+	mux.HandleFunc("/api/playoffplayer/list", PlayerList)
 	http.Handle("/", mux)
 }
 

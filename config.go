@@ -6,6 +6,7 @@ var MSFUsername = ""
 var MSFPassword = ""
 
 var ListPlayersMemcacheKey = "LIST-PLAYERS"
+var ListPlayoffPlayersMemcacheKey = "LIST-PLAYOFF-PLAYERS"
 
 func initializeConfig() {
 	MSFUsername = os.Getenv("MSF_USERNAME")

@@ -10,16 +10,18 @@ import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
+	"google.golang.org/appengine/memcache"
 	"google.golang.org/appengine/urlfetch"
 )
 
-const cumulative_player_stats = "https://api.mysportsfeeds.com/v1.2/pull/nhl/2017-2018-regular/cumulative_player_stats.json"
+const cumulative_regular_stats = "https://api.mysportsfeeds.com/v1.2/pull/nhl/2017-2018-regular/cumulative_player_stats.json"
+const cumulative_playoff_stats = "https://api.mysportsfeeds.com/v1.2/pull/nhl/2018-playoff/cumulative_player_stats.json"
 
-func Fetch(w http.ResponseWriter, r *http.Request) {
+func FetchRegular(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(appengine.NewContext(r), 60*time.Second)
 	defer cancel()
 	client := urlfetch.Client(ctx)
-	req, err := http.NewRequest("GET", cumulative_player_stats, nil)
+	req, err := http.NewRequest("GET", cumulative_regular_stats, nil)
 	req.SetBasicAuth(MSFUsername, MSFPassword)
 	res, err := client.Do(req)
 	if err != nil {
@@ -41,6 +43,45 @@ func Fetch(w http.ResponseWriter, r *http.Request) {
 			if _, err := datastore.Put(ctx, playerKey, &player); err != nil {
 				log.Errorf(ctx, "datastore.Put: %v", err)
 			}
+		}
+		if err = memcache.Delete(ctx, ListPlayersMemcacheKey); err != nil {
+			log.Warningf(ctx, "Error unsetting key: %v", err)
+		}
+	} else {
+		log.Errorf(ctx, fmt.Sprintf("Recieved Error %d", res.StatusCode))
+	}
+	fmt.Fprintf(w, "HTTP GET returned status %v", res.Status)
+}
+
+func FetchPlayoff(w http.ResponseWriter, r *http.Request) {
+	ctx, cancel := context.WithTimeout(appengine.NewContext(r), 60*time.Second)
+	defer cancel()
+	client := urlfetch.Client(ctx)
+	req, err := http.NewRequest("GET", cumulative_playoff_stats, nil)
+	req.SetBasicAuth(MSFUsername, MSFPassword)
+	res, err := client.Do(req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer res.Body.Close()
+	if res.StatusCode == 200 {
+		target := MSFCumulativePlayerStatsResponse{}
+		json.NewDecoder(res.Body).Decode(&target)
+
+		log.Infof(ctx, fmt.Sprintf("%v", target.CumulativePlayerStats.LastUpdatedOn))
+		for _, msfPlayer := range target.CumulativePlayerStats.Players {
+			if msfPlayer.PlayerStats.Stats.Points.Value == 0 {
+				continue
+			}
+			playerKey := datastore.NewKey(ctx, "PlayoffPlayer", msfPlayer.Description.ID, 0, nil)
+			player := toPlayer(msfPlayer)
+			if _, err := datastore.Put(ctx, playerKey, &player); err != nil {
+				log.Errorf(ctx, "datastore.Put: %v", err)
+			}
+		}
+		if err = memcache.Delete(ctx, ListPlayoffPlayersMemcacheKey); err != nil {
+			log.Warningf(ctx, "Error unsetting key: %v", err)
 		}
 	} else {
 		log.Errorf(ctx, fmt.Sprintf("Recieved Error %d", res.StatusCode))
