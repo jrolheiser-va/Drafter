@@ -4,19 +4,19 @@
     <span style="flex: 1 1 auto;"></span>
     <mat-button-toggle-group #group="matButtonToggleGroup">
       <mat-button-toggle value="playoffs" checked="true">
-        Playoff Players
+        Playoffs
       </mat-button-toggle>
-      <mat-button-toggle value="all">
-        All Players
+      <mat-button-toggle value="regular">
+        Regular
       </mat-button-toggle>
     </mat-button-toggle-group>
   </mat-toolbar>
   <ng-container *ngIf="players.length" [ngSwitch]="group.value">
     <div *ngSwitchCase="'playoffs'">
-      <player-list [players]="playoffPlayers" [teamAbbreviation]="'Playoff Players'"></player-list>
+      <player-list [players]="playoffPlayers" [teamAbbreviation]="'Playoffs'"></player-list>
     </div>
-    <div *ngSwitchCase="'all'">
-      <player-list [players]="players" [teamAbbreviation]="'All Players'"></player-list>
+    <div *ngSwitchCase="'regular'">
+      <player-list [players]="players" [teamAbbreviation]="'Regular'"></player-list>
     </div>
   </ng-container>
 </div>

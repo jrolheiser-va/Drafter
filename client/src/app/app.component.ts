@@ -17,12 +17,13 @@ export class AppComponent {
   playoffPlayers: Player[] = [];
 
   constructor(private playersService: PlayerService) {
-    this.playersService.players$.subscribe(
-      players => {
+    Observable.combineLatest(
+      this.playersService.players$,
+      this.playersService.playoffPlayers$
+    ).subscribe(
+      ([players, playoffPlayers]) => {
         this.players = players;
-        this.playoffPlayers = this.players.filter(
-          player => PLAYOFF_TEAM_IDS.indexOf(player.TeamAbbreviation) > -1
-        );
+        this.playoffPlayers = playoffPlayers;
       }
     );
   }

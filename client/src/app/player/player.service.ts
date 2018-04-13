@@ -14,19 +14,23 @@ import { Sort, SortDirection } from '@angular/material';
 
 @Injectable()
 export class PlayerService {
-    private allPlayers$$: ReplaySubject<Player[]> = new ReplaySubject(1);
+    private regularPlayers$$: ReplaySubject<Player[]> = new ReplaySubject(1);
+    private playoffPlayers$$: ReplaySubject<Player[]> = new ReplaySubject(1);
 
     constructor(private http: HttpClient) {
         this.http.get('/api/player/list').subscribe(
-            (players: Player[]) => this.allPlayers$$.next(players)
+            (players: Player[]) => this.regularPlayers$$.next(players)
+        );
+        this.http.get('/api/playoffplayer/list').subscribe(
+            (players: Player[]) => this.playoffPlayers$$.next(players)
         );
     }
 
     get players$(): Observable<Player[]> {
-        return this.allPlayers$;
+        return this.regularPlayers$$.asObservable();
     }
 
-    private get allPlayers$(): Observable<Player[]> {
-        return this.allPlayers$$.asObservable();
+    get playoffPlayers$(): Observable<Player[]> {
+        return this.playoffPlayers$$.asObservable();
     }
 }
